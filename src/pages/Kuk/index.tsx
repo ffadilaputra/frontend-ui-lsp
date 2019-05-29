@@ -16,7 +16,11 @@ const fields: IField[] = [
     {
         name: "pertanyaan",
         label: "Pertanyaan",
-        type:"text",
+        validations: ["required"],
+    },
+    {
+        name: "id_elemen",
+        label: "Elemen",
         validations: ["required"],
     },
     {
@@ -27,8 +31,9 @@ const fields: IField[] = [
         optionData: {
             data: [],
             textKey: "judul_elemen",
-            valueKey: "_id",
-        }
+            valueKey: "judul_elemen",
+        },
+        hide: true,
     }
 ]
 
@@ -84,7 +89,7 @@ export default class Kuk extends Component<{}, IState> {
             .catch((error) => this.setState({ error, loading: false }))
     }
     public setOptionsData() {
-        fields[1].optionData!.data = this.state.elemen
+        fields[2].optionData!.data = this.state.elemen
     }
     public render() {
         this.setOptionsData()

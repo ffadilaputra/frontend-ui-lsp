@@ -20,14 +20,20 @@ const fields: IField[] = [
     },
     {
         name: "id_unit",
-        label: "Elemen",
+        label: "Kode Unit",
+        validations: ["required"],
+    },
+    {
+        name: "id_unit",
+        label: "Kode Unit",
         type:"option",
         validations: ["required"],
         optionData: {
             data: [],
             textKey: "kode_unit",
-            valueKey: "_id",
-        }
+            valueKey: "kode_unit",
+        },
+        hide:true
     }
 ]
 
@@ -83,7 +89,7 @@ export default class Elemen extends Component<{}, IState> {
             .catch((error) => this.setState({ error, loading: false }))
     }
     public setOptionsData() {
-        fields[1].optionData!.data = this.state.elemen
+        fields[2].optionData!.data = this.state.unit
     }
     public render() {
         this.setOptionsData()

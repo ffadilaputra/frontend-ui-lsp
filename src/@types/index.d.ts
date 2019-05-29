@@ -43,7 +43,7 @@ declare interface IUnit {
   _id: string
   kode: string
   judul: string
-  id_skema: ISkema
+  id_skema: ISkema | string
 }
 
 declare interface IElemen {

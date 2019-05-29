@@ -20,6 +20,11 @@ const fields: IField[] = [
     },
     {
         name: "id_tuk",
+        label: "Nama TUK",
+        validations: ["required"],
+    },
+    {
+        name: "id_tuk",
         label: "Tuk",
         type: "option",
         validations: ["required"],
@@ -85,7 +90,7 @@ export default class Skema extends Component<{}, IState> {
     }
 
     public setOptionsData() {
-        fields[1].optionData!.data = this.state.tuk
+        fields[2].optionData!.data = this.state.tuk
     }
 
     public render() {

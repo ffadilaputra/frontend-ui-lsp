@@ -26,13 +26,19 @@ const fields: IField[] = [
     {
         name: "id_skema",
         label: "Nama Skema",
+        validations: ["required"],
+    },
+    {
+        name: "id_skema",
+        label: "Nama Skema",
         type:"option",
         validations: ["required"],
         optionData: {
             data: [],
             textKey: "nama_skema",
-            valueKey: "_id",
-        }
+            valueKey: "nama_skema",
+        },
+        hide:true
     }
 ]
 
@@ -88,7 +94,7 @@ export default class Unit extends Component<{}, IState> {
             .catch((error) => this.setState({ error, loading: false }))
     }
     public setOptionsData() {
-        fields[2].optionData!.data = this.state.skema
+        fields[3].optionData!.data = this.state.skema
     }
     public render() {
         this.setOptionsData()

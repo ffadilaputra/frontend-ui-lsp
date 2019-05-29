@@ -2,7 +2,7 @@
   "name": "frontend-ui-lsp",
   "version": "0.1.2",
   "private": true,
-  "homepage": "https://wri.polinema.ac.id/pamdal",
+  "homepage": "",
   "dependencies": {
     "@types/validator": "^10.9.0",
     "axios": "^0.18.0",
@@ -45,6 +45,5 @@
   },
   "description": "Community crew monitoring for tracking activity of crew",
   "main": "index.js",
-  "author": "Ivan Fadila Putra <i.fadilaputra@gmail.com> (ffadilaputra.github.io)",
-  "license": "ISC"
+  "license": "WTFPL"
 }
