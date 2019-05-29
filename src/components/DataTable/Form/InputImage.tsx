@@ -15,7 +15,7 @@ interface IState {
 
 export default class InputImage extends Component<IProps, IState> {
   public state: IState = {
-    preview: api.serviceCrew + this.props.value,
+    preview: api.endpointTuk + this.props.value,
   }
 
   public changeImage(file: File) {

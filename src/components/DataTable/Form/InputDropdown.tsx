@@ -39,7 +39,8 @@ export default class InputDropdown extends Component<IProps> {
             floating
             options={this.getOptions()}
             value={this.getValue()}
-            onChange={(event, { value }) => this.props.onChange(value)}
+            onChange={(event, { value }) =>
+            this.props.onChange(value)}
             disabled={this.props.readOnly}
             style={styles.dropdown}
           />
