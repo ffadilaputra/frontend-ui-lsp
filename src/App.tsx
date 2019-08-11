@@ -6,21 +6,40 @@ import Navigation from "./components/Layouts/Navigation"
 import PrivateRoute from "./components/PrivateRoute"
 import { routes } from "./config"
 
-const context = React.createContext<IAppContext | null>(null)
+const context = React.createContext<IAppContext>({
+  token: "",
+  username: {} as "",
+  login: () => undefined,
+  logout: () => undefined,
+  isLoggedIn: () => false,
+})
+
 const { Provider, Consumer } = context
 
 interface IState {
-  token: string
+  token: string,
+  username: string
 }
 
 class App extends Component {
   public state: IState = {
     token: localStorage.getItem("authToken") || "",
+    username: JSON.parse(localStorage.getItem("authUser") || "{}"),
   }
 
-  public setToken = (token: string) => {
-    this.setState({ token })
-    localStorage.setItem("authToken", token)
+  public login = (token: string, username: string, callback: () => void) => {
+    this.setState({ token, username }, () => {
+      localStorage.setItem("authToken", token)
+      localStorage.setItem("authUser", JSON.stringify(username))
+      callback()
+    })
+  }
+
+  public logout = () => {
+    localStorage.removeItem("authToken")
+    localStorage.removeItem("authUser")
+    this.setState({ token: undefined, email: undefined })
+    window.location.href = "/"
   }
 
   public isLoggedIn = () => {
@@ -28,47 +47,46 @@ class App extends Component {
   }
 
   public renderRoutes() {
-    return routes.map((route, index) =>
-      route.private ? (
-        <PrivateRoute
+    return routes.map((route) => {
+      const AppRoute = route.private ? PrivateRoute : Route
+      return (
+        <AppRoute
+          name={route.name}
           path={route.path}
           component={route.component}
-          key={index}
           exact
+          key={route.path}
         />
-      ) : (
-        <Route
-          path={route.path}
-          component={route.component}
-          key={index}
-          exact
-        />
-      ),
+      )
+    }
     )
   }
 
   public render() {
     const providerValue = {
       token: this.state.token,
-      setToken: this.setToken,
+      username: this.state.username,
+      login: this.login,
+      logout: this.logout,
       isLoggedIn: this.isLoggedIn,
     }
     return (
-
-        <BrowserRouter basename="/pamdal">
-          <Grid columns="2" style={styles.container}>
-            {/* {this.isLoggedIn() ? ( */}
-              <Grid.Column width="3">
-                <Navigation />
-              </Grid.Column>
-            {/* ) : null} */}
-            <Grid.Column width="13">
-              {this.isLoggedIn() ? <Menubar /> : null}
-              <div style={styles.pageContainer}>{this.renderRoutes()}</div>
+      <Provider value={providerValue}>
+      <BrowserRouter basename="/index">
+        <Grid columns="2" style={styles.container}>
+          {/* {this.isLoggedIn() && ( */}
+            <Grid.Column width="3">
+              <Navigation />
             </Grid.Column>
-          </Grid>
-        </BrowserRouter>
-
+          {/* )} */}
+          <Grid.Column width="13">
+            {/* {this.isLoggedIn() && <Menubar />} */}
+            <Menubar/>
+            <div style={styles.pageContainer}>{this.renderRoutes()}</div>
+          </Grid.Column>
+        </Grid>
+      </BrowserRouter>
+    </Provider>
     )
   }
 }

@@ -30,7 +30,7 @@ const fields: IField[] = [
         validations: ["required"],
         optionData: {
             data: [],
-            textKey: "kode_unit",
+            textKey: "judul_unit",
             valueKey: "kode_unit",
         },
         hide:true

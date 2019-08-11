@@ -1,3 +1,3 @@
 export default {
-  endpointTuk: "http://127.0.0.1:8762/"
+  endpoint: "http://localhost:8080/api/"
 }

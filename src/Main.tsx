@@ -6,10 +6,46 @@ import Navigation from "./components/Layouts/Navigation"
 import PrivateRoute from "./components/PrivateRoute"
 import { routes } from "./config"
 
-const context = React.createContext<IAppContext | null>(null)
+const context = React.createContext<IAppContext>({
+  token: "",
+  username: "",
+  login: () => undefined,
+  logout: () => undefined,
+  isLoggedIn: () => false,
+})
+
+interface IState {
+  token: string,
+  username: string
+}
+
 const { Provider, Consumer } = context
 
 class Main extends Component {
+
+  public state: IState = {
+    token: localStorage.getItem("authToken") || "",
+    username: JSON.parse(localStorage.getItem("authUser") || "{}"),
+  }
+
+  public login = (token: string, username: string, callback: () => void) => {
+    this.setState({ token, username }, () => {
+      localStorage.setItem("authToken", token)
+      localStorage.setItem("authUser", JSON.stringify(username))
+      callback()
+    })
+  }
+
+  public logout = () => {
+    localStorage.removeItem("authToken")
+    localStorage.removeItem("authUser")
+    this.setState({ token: undefined, username: undefined })
+    window.location.href = "/"
+  }
+
+  public isLoggedIn = () => {
+    return this.state.token !== ""
+  }
 
   public renderRoutes() {
     return routes.map((route, index) =>(
@@ -24,7 +60,17 @@ class Main extends Component {
   }
 
   public render() {
+
+    const providerValue = {
+      token: this.state.token,
+      username: this.state.username,
+      login: this.login,
+      logout: this.logout,
+      isLoggedIn: this.isLoggedIn,
+    }
+
     return (
+      <Provider value={providerValue}>
         <BrowserRouter basename="/index">
           <Grid columns="2" style={styles.container}>
               <Grid.Column width="3">
@@ -35,6 +81,7 @@ class Main extends Component {
             </Grid.Column>
           </Grid>
         </BrowserRouter>
+        </Provider>
     )
   }
 }

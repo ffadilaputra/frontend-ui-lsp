@@ -5,6 +5,7 @@ declare interface IRoute {
   component: React.FunctionComponent | React.Components
   hide?: boolean
   private?: boolean
+  name: string
 }
 
 declare interface IField {
@@ -21,6 +22,8 @@ declare interface IOptionData {
   textKey: string
   valueKey: string
 }
+
+
 
 declare interface ITuk {
   _id: string
@@ -60,11 +63,28 @@ declare interface IKuk {
 
 declare interface IAppContext {
   token: string
-  setToken: (token: string) => void
+  username: string
+  login: (token: string, username: string , callback: () => void) => void
+  logout: () => void
   isLoggedIn: () => boolean
 }
 
+declare interface IPemohon {
+  id: string
+  username: string
+  email: string
+  password: string
+  roles: string
+  fullname: string
+  date: string
+  gender: string
+  nationaly: string
+  address: string
+  education: string
+}
+
 interface ILogin {
-  success: boolean
+  username?: string
+  password?: string
   token?: string
 }
