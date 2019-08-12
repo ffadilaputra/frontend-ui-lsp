@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Redirect, Route, RouteProps } from "react-router-dom"
-import { Consumer } from "../../App"
+import { Consumer } from "../../Main"
 
 export default class PrivateRoute extends Component<RouteProps> {
   public render() {

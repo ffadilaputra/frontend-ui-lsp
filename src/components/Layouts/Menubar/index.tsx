@@ -1,6 +1,6 @@
 import React, { Component } from "react"
 import { Dropdown, Menu } from "semantic-ui-react"
-import { Consumer } from "../../../App"
+import { Consumer } from "../../../Main"
 import AppTitle from "./AppTitle"
 
 class Menubar extends Component {
@@ -8,7 +8,7 @@ class Menubar extends Component {
     return (
       <Consumer>
         {(context) => (
-          <Menu fixed="top" inverted color="orange" borderless>
+          <Menu fixed="top" inverted color="black" borderless>
             <AppTitle />
             <Menu.Menu position="right">
               <Dropdown item text="Administrator" pointing>

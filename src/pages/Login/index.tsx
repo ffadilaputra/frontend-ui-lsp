@@ -1,7 +1,7 @@
 import React, { Component } from "react"
 import { RouteComponentProps } from "react-router"
 import { Button, Card, Form, Header, Input, Loader } from "semantic-ui-react"
-import { Consumer } from "../../App"
+import { Consumer } from "../../Main"
 import { LoginService } from "../../services/LoginService"
 
 interface IState {
@@ -45,10 +45,10 @@ export default class Login extends Component<RouteComponentProps, IState> {
     this.setState({ loading: true })
     this.loginService.login(username, password).then((data) => {
       this.setState({ loading: false })
-      console.log(data)
-      if (data != null) {
-          context.login(data.token!,data.username!, () => {
-          //this.props.history.push("/")
+      //console.log(data)
+      if (data) {
+          context.login(data.toString(), this.state.input.username, () => {
+          this.props.history.push("/")
           console.log(data)
         })
       } else {

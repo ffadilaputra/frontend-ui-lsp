@@ -23,8 +23,6 @@ declare interface IOptionData {
   valueKey: string
 }
 
-
-
 declare interface ITuk {
   _id: string
   nama: string
@@ -64,7 +62,7 @@ declare interface IKuk {
 declare interface IAppContext {
   token: string
   username: string
-  login: (token: string, username: string , callback: () => void) => void
+  login: (token: string , username: string, callback: () => void) => void
   logout: () => void
   isLoggedIn: () => boolean
 }
@@ -83,8 +81,12 @@ declare interface IPemohon {
   education: string
 }
 
-interface ILogin {
+declare interface IAdmin {
   username?: string
   password?: string
+}
+
+declare interface ILogin {
   token?: string
+  username?: string
 }

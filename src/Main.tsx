@@ -16,7 +16,7 @@ const context = React.createContext<IAppContext>({
 
 interface IState {
   token: string,
-  username: string
+  username: string,
 }
 
 const { Provider, Consumer } = context
@@ -25,13 +25,13 @@ class Main extends Component {
 
   public state: IState = {
     token: localStorage.getItem("authToken") || "",
-    username: JSON.parse(localStorage.getItem("authUser") || "{}"),
+    username: localStorage.getItem("authUser") || "{}",
   }
 
-  public login = (token: string, username: string, callback: () => void) => {
-    this.setState({ token, username }, () => {
+  public login = (token: string, username:string, callback: () => void) => {
+    this.setState({ token,username }, () => {
       localStorage.setItem("authToken", token)
-      localStorage.setItem("authUser", JSON.stringify(username))
+      localStorage.setItem("authUser", username)
       callback()
     })
   }
@@ -40,7 +40,7 @@ class Main extends Component {
     localStorage.removeItem("authToken")
     localStorage.removeItem("authUser")
     this.setState({ token: undefined, username: undefined })
-    window.location.href = "/"
+    window.location.href = "/login"
   }
 
   public isLoggedIn = () => {
@@ -73,10 +73,13 @@ class Main extends Component {
       <Provider value={providerValue}>
         <BrowserRouter basename="/index">
           <Grid columns="2" style={styles.container}>
+            { this.isLoggedIn() && (
               <Grid.Column width="3">
                 <Navigation />
               </Grid.Column>
+            )}
             <Grid.Column width="13">
+              { this.isLoggedIn() && <Menubar/> }
               <div style={styles.pageContainer}>{this.renderRoutes()}</div>
             </Grid.Column>
           </Grid>
