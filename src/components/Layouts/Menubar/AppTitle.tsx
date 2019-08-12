@@ -6,7 +6,7 @@ class NavigationHeader extends Component {
     return (
       <Menu.Item>
         <Header inverted>
-          <Header.Content>Crew Monitoring</Header.Content>
+          <Header.Content>Admin</Header.Content>
         </Header>
       </Menu.Item>
     )

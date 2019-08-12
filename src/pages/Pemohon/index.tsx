@@ -6,31 +6,73 @@ import { PemohonService } from "../../services/PemohonService"
 
 interface IState {
     pemohon: IPemohon[]
-    data: any
     loading: boolean
     error?: Error
 }
 
 const fields: IField[] = [
     {
+        name: "fullname",
+        label: "Fullname",
+        validations: ["required"],
+    },
+    {
         name: "username",
         label: "Username",
         validations: ["required"],
+    },
+    {
+        name: "password",
+        label: "Password",
+        validations: ["required"],
+        hide:true
     },
     {
         name: "email",
         label: "Email",
         validations: ["required"],
     },
+    {
+        name: "gender",
+        label: "Gender",
+        type: "option",
+        optionData: {
+            data: [{"gender":"Perempuan"},{"gender":"Laki-Laki"}],
+            textKey: "gender",
+            valueKey: "gender",
+        },
+        validations: ["required"],
+        hide:true,
+    },
+    {
+        name: "date",
+        label: "Date",
+        type: "date",
+        validations: ["required"],
+    },
+    {
+        name: "nationality",
+        label: "Nationality",
+        validations: ["required"],
+        hide:true,
+    },
+    {
+        name: "address",
+        label: "Address",
+        validations: ["required"],
+        hide:true,
+    },
+    {
+        name: "education",
+        label: "Education",
+        validations: ["required"],
+        hide:true,
+    },
 ]
 
 export default class Pemohon extends Component<{}, IState> {
     public state: IState = {
         pemohon: [],
-        data: [
-            {"username":"ffadilaputra","email":"i.fadilaputra@gmail.com"},
-            {"username":"alfonso","email":"alfonso.tigerhearts@gmail.com"}
-        ],
         loading: false,
     }
 
@@ -81,12 +123,12 @@ export default class Pemohon extends Component<{}, IState> {
                     onDismiss={() => this.setState({ error: undefined })}
                 />
                 <DataTable
-                    data={this.state.data}
+                    data={this.state.pemohon}
                     loading={this.state.loading}
                     fields={fields}
-                    onCreate={(input) => ''}
-                    onUpdate={(input) => ''}
-                    onDelete={(input) => ''}
+                    onCreate={(input) => this.createPemohon(input)}
+                    onUpdate={(input) => this.updatePemohon(input, input._id)}
+                    onDelete={(input) => this.deletePemohon(input._id)}
                 />
             </Fragment>
         )

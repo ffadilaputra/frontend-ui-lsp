@@ -11,7 +11,7 @@ class Menubar extends Component {
           <Menu fixed="top" inverted color="black" borderless>
             <AppTitle />
             <Menu.Menu position="right">
-              <Dropdown item text="Administrator" pointing>
+              <Dropdown item text={ `${context.username}` } pointing>
                 <Dropdown.Menu>
                   <Dropdown.Item
                     icon="sign-out"

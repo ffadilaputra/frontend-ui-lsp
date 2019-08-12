@@ -68,7 +68,7 @@ declare interface IAppContext {
 }
 
 declare interface IPemohon {
-  id: string
+  _id: string
   username: string
   email: string
   password: string

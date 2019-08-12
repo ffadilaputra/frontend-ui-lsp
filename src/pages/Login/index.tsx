@@ -95,7 +95,7 @@ export default class Login extends Component<RouteComponentProps, IState> {
                     </Form.Field>
                     <Form.Field>
                       <Input
-                        label="Sandi"
+                        label="password"
                         type="password"
                         value={this.state.input.password}
                         onChange={(event) =>
