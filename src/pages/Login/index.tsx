@@ -49,7 +49,6 @@ export default class Login extends Component<RouteComponentProps, IState> {
       if (data) {
           context.login(data.toString(), this.state.input.username, () => {
           this.props.history.push("/")
-          console.log(data)
         })
       } else {
         this.resetValue()

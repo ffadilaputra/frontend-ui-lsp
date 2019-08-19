@@ -26,21 +26,21 @@ const fields: IField[] = [
     {
         name: "id_unit",
         label: "Kode Unit",
-        type:"option",
+        type: "option",
         validations: ["required"],
         optionData: {
             data: [],
             textKey: "judul_unit",
             valueKey: "kode_unit",
         },
-        hide:true
+        hide: true
     }
 ]
 
 export default class Elemen extends Component<{}, IState> {
     public state: IState = {
         unit: [],
-        elemen:[],
+        elemen: [],
         loading: false,
     }
 
@@ -52,7 +52,7 @@ export default class Elemen extends Component<{}, IState> {
         this.getElemen()
     }
 
-    public getUnit(){
+    public getUnit() {
         this.unitService.get().then((unit) => this.setState({ unit }))
     }
 

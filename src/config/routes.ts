@@ -5,15 +5,17 @@ import Elemen from "../pages/Elemen";
 import Kuk from "../pages/Kuk";
 import Login from "../pages/Login";
 import Pemohon from "../pages/Pemohon";
+import Berkas from "../pages/Berkas";
+import Relevansi from "../pages/Relevansi";
 
 const routes: IRoute[] = [
   {
-    name:"tuk",
+    name: "tuk",
     component: Tuk,
     label: "Tuk",
     icon: "cube",
     path: "/tuk",
-    private: true,
+    private: true
   },
   {
     name: "tuk",
@@ -21,15 +23,15 @@ const routes: IRoute[] = [
     label: "Skema",
     icon: "clipboard",
     path: "/skema",
-    private: true,
+    private: true
   },
   {
-    name:"unit",
+    name: "unit",
     component: Unit,
     label: "Unit",
     icon: "folder",
     path: "/unit",
-    private: true,
+    private: true
   },
   {
     name: "elemen",
@@ -37,7 +39,7 @@ const routes: IRoute[] = [
     label: "Elemen",
     icon: "archive",
     path: "/elemen",
-    private: true,
+    private: true
   },
   {
     name: "kuk",
@@ -45,7 +47,7 @@ const routes: IRoute[] = [
     label: "Kuk",
     icon: "file alternate",
     path: "/kuk",
-    private: true,
+    private: true
   },
   {
     name: "login",
@@ -53,7 +55,7 @@ const routes: IRoute[] = [
     label: "Login",
     path: "/login",
     private: false,
-    hide:true,
+    hide: true
   },
   {
     name: "pemohon",
@@ -61,8 +63,24 @@ const routes: IRoute[] = [
     label: "Pemohon",
     icon: "user",
     path: "/pemohon",
-    private: false,
+    private: false
+  },
+  {
+    name: "Relevansi",
+    component: Relevansi,
+    label: "Relevansi",
+    icon: "file",
+    path: "/relevansi",
+    private: true
+  },
+  {
+    name: "Berkas",
+    component: Berkas,
+    label: "Berkas",
+    icon: "file",
+    path: "/berkas",
+    private: true
   }
-]
+];
 
-export default routes
+export default routes;

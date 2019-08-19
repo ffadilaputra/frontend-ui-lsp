@@ -25,7 +25,7 @@ const fields: IField[] = [
         name: "password",
         label: "Password",
         validations: ["required"],
-        hide:true
+        hide: true
     },
     {
         name: "email",
@@ -37,12 +37,12 @@ const fields: IField[] = [
         label: "Gender",
         type: "option",
         optionData: {
-            data: [{"gender":"Perempuan"},{"gender":"Laki-Laki"}],
+            data: [{ "gender": "Perempuan" }, { "gender": "Laki-Laki" }],
             textKey: "gender",
             valueKey: "gender",
         },
         validations: ["required"],
-        hide:true,
+        hide: true,
     },
     {
         name: "date",
@@ -54,19 +54,19 @@ const fields: IField[] = [
         name: "nationality",
         label: "Nationality",
         validations: ["required"],
-        hide:true,
+        hide: true,
     },
     {
         name: "address",
         label: "Address",
         validations: ["required"],
-        hide:true,
+        hide: true,
     },
     {
         name: "education",
         label: "Education",
         validations: ["required"],
-        hide:true,
+        hide: true,
     },
 ]
 
@@ -122,7 +122,7 @@ export default class Pemohon extends Component<{}, IState> {
                     error={this.state.error}
                     onDismiss={() => this.setState({ error: undefined })}
                 />
-                <DataTable
+                <DataTable<IPemohon>
                     data={this.state.pemohon}
                     loading={this.state.loading}
                     fields={fields}

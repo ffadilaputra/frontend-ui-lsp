@@ -20,7 +20,7 @@ const fields: IField[] = [
     },
     {
         name: "id_tuk",
-        label: "Nama TUK",
+        label: "Nama Tuk",
         validations: ["required"],
     },
     {
@@ -33,7 +33,7 @@ const fields: IField[] = [
             textKey: "nama",
             valueKey: "nama",
         },
-        hide:true
+        hide: true
     }
 ]
 
